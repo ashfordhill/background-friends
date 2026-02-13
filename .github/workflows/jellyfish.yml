@@ -35,20 +35,26 @@ jobs:
         env:
           NODE_ENV: development
 
-      - name: Take and save visual records
+      - name: Capture and save visual records
         uses: ashfordhill/puppeteer-action@v8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          url: http://localhost:8080
+      - name: Capture and save visual records
+        uses: ashfordhill/puppeteer-action@v8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          url: http://localhost:3000
           folder: timeline
-          basename: screenshot
+          base_screenshot_name: screenshot
+          # Set to false if wanting action only when '#screenshot' in latest commit
           auto_screenshots: true  
           # Video recording settings
-          make_video: true
+          video_format: mp4,gif
           video_duration: 10
-          video_speed: 2
-          video_name: jellyfish
+          video_speed_seconds: 2
+          base_video_name: video
 
       - name: Commit visual records
         env:
