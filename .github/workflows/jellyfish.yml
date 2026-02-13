@@ -47,8 +47,8 @@ jobs:
           auto_screenshots: true  
           # Video recording settings
           video_format: mp4,gif
-          video_duration: 10
-          video_speed_seconds: 2
+          video_duration: 15
+          video_speed_seconds: 3
           base_video_name: video
 
       - name: Commit visual records
