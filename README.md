@@ -1,6 +1,8 @@
 # Background Friends
 
-## Jellyfish
+## Jellyfish (WIP)
+
+![](timeline/video-latest.gif)
 
 I wanted an animated jellyfish with a transparent background to exist as a React component that anyone could add to a background. Then you could have little jellyfish moving around to add some fun touches.
 
