@@ -40,7 +40,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          url: http://localhost:3000
+          url: http://localhost:8080
           folder: timeline
           base_screenshot_name: screenshot
           # Set to false if wanting action only when '#screenshot' in latest commit
