@@ -1,84 +1,38 @@
 # Background Friends
 
-A collection of ready-to-use, animated React background components for modern web applications, each with independent versioning and publishing.
+## Jellyfish
 
-## Monorepo Structure
+I wanted an animated jellyfish with a transparent background to exist as a React component that anyone could add to a background. Then you could have little jellyfish moving around to add some fun touches.
 
-This is a monorepo where each component is independently publishable and has its own demo/tests/workflow:
+### Generating the Jellyfish
 
-```
-background-friends/
-├── packages/
-│   ├── jellyfish/
-│   │   ├── src/               # Main component source
-│   │   ├── demo/              # Component-specific demo (not published to NPM)
-│   │   ├── package.json       # Independent versioning
-│   │   └── ...
-│   └── [future components]/
-│       ├── src/
-│       ├── demo/
-│       ├── package.json
-│       └── ...
-└── package.json               # Root workspace config
-```
+I asked OpenAI's ChatGPT to generate a jellyfish for me with a transparent background. I later used a tool to convert the transparent background to a bright green one.
 
-## Quick Start
+![](jellyfish/documentation/chatgpt-made-a-jellyfish.png)
 
-### Development
+### Animating the Jellyfish
 
-Install dependencies:
-```bash
-npm install
-```
+When using the transparent background jellyfish, the background of these generated videos were not transparent or very friendly for making transparent. So I made the background green first with some [random online png editor](https://onlinepngtools.com/replace-alpha-channel-in-png).
 
-Run the jellyfish demo (localhost:8080):
-```bash
-npm run demo:jellyfish
-```
 
-Build all packages:
-```bash
-npm run build:packages
-```
+[Kling O1](https://app.klingai.com/) offers a way to set the **start frame** and **end frame** of a video. If both are equivalent then we can get an infinite loop, in theory:
 
-### Publishing
+~[](jellyfish/documentation/kling-ai-start-end-frame.png)
 
-Each package publishes independently with its own GitHub Actions workflow:
+I generated a couple videos but despite modifying the prompt a little bit, the animation remained similar across generations. I also don't have unlimited money to burn, lol.
 
-```bash
-cd packages/jellyfish
-npm publish
-```
+~[](jellyfish/documentation/kling-ai-videos.gif)
 
-## Packages
+### Programming the Jellyfish
 
-### @background-friends/jellyfish
+I used vibe-coding to describe what I was trying to do with my resulting `.mp4` from Kling O1. The result was some desired behavior, although I'm not satisfied with how it looks yet.
 
-An animated jellyfish React component featuring:
-- Smooth rotation on direction changes (swims naturally)
-- Infinite loop video animation with chroma key
-- Responsive canvas rendering
-- Configurable count, speed, size, and rotation easing
+### Future Considerations
 
-[See jellyfish README](./packages/jellyfish/README.md)
+To give the animation more variety, perhaps there's a tool out there that can take in multiple frames to generate a video from. 
 
-## Component Workflow Pattern
+![](jellyfish/documentation/frame-specific-ai-video-gen.png)
 
-Each component (e.g., jellyfish, newThing) has:
+Or, you could also use the same start/end frames across multiple videos and merge them into 1 format.
 
-1. **Source code** at `packages/[component]/src/`
-2. **NPM package config** at `packages/[component]/package.json`
-3. **Local demo** at `packages/[component]/demo/` (not published)
-4. **Separate GitHub Actions** workflow for CI/package publishing
-
-This keeps components completely independent with their own version history and release cycles.
-
-## Documentation
-
-- [SETUP.md](./SETUP.md) - Detailed setup guide
-- [QUICK.md](./QUICK.md) - Command reference
-- [CONTRIBUTING.md](./CONTRIBUTING.md) - Adding new components
-- [MIGRATION.md](./MIGRATION.md) - What changed from old structure
-- [OVERVIEW.md](./OVERVIEW.md) - Architecture overview
-- [ROTATION_ALGORITHM.md](./ROTATION_ALGORITHM.md) - Deep dive on smooth rotation
-
+I think programmatically (in the code) there's only so much I can do to make the jellyfish move around nicely. The animation is probably super important to really selling this idea.

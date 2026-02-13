@@ -40,11 +40,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-      - name: Capture and save visual records
-        uses: ashfordhill/puppeteer-action@v8
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
           url: http://localhost:3000
           folder: timeline
           base_screenshot_name: screenshot
