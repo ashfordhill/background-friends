@@ -19,11 +19,11 @@ When using the transparent background jellyfish, the background of these generat
 
 [Kling O1](https://app.klingai.com/) offers a way to set the **start frame** and **end frame** of a video. If both are equivalent then we can get an infinite loop, in theory:
 
-~[](jellyfish/documentation/kling-ai-start-end-frame.png)
+![](jellyfish/documentation/kling-ai-start-end-frame.png)
 
 I generated a couple videos but despite modifying the prompt a little bit, the animation remained similar across generations. I also don't have unlimited money to burn, lol.
 
-~[](jellyfish/documentation/kling-ai-videos.gif)
+![](jellyfish/documentation/kling-ai-videos.gif)
 
 ### Programming the Jellyfish
 
