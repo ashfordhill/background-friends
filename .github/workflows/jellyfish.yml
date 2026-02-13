@@ -1,0 +1,65 @@
+name: jellyfish
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  demo:
+    name: Run Jellyfish Demo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './jellyfish/package-lock.json'
+
+      - name: Install and Build
+        run: |
+          cd jellyfish
+          npm install
+          npm run build
+          cd demo
+          npm install
+
+      - name: Start demo server
+        run: |
+          cd jellyfish/demo
+          npm run dev -- --host &
+          npx wait-on http://localhost:8080 -t 30000
+        env:
+          NODE_ENV: development
+
+      - name: Take and save visual screenshot
+        uses: ashfordhill/puppeteer-action@v8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          url: http://localhost:8080
+          folder: timeline
+          basename: screenshot
+          auto_screenshots: true  
+          # Video recording settings
+          make_video: true
+          video_duration: 10
+          video_speed: 2
+          video_name: jellyfish
+
+      # 'git add -A' assumes your .gitignore is set in a way that these are the only unstaged changes. Otherwise specify the folder name used above, for 'git add'.
+      - name: Commit screenshots
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add -A
+          git commit -m "Add/update visual documentation [skip ci]" || echo "No changes to commit"
+          git push origin HEAD:${{ github.ref }}
