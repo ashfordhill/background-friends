@@ -23,7 +23,11 @@ When using the transparent background jellyfish, the background of these generat
 
 I generated a couple videos but despite modifying the prompt a little bit, the animation remained similar across generations. I also don't have unlimited money to burn, lol.
 
-![](jellyfish/documentation/kling-ai-videos.gif)
+
+<div align="center" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+  <img src="jellyfish/documentation/kling-ai-video-1.gif" style="margin:0 8px;" />
+  <img src="jellyfish/documentation/kling-ai-video-2.gif" style="margin:0 8px;" />
+</div>
 
 ### Programming the Jellyfish
 
